@@ -1,0 +1,138 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0rem 2rem 1rem 2rem;
+    padding: 2rem;
+}
+
+.card {
+    flex-direction: column;
+    align-items: center; 
+    min-height: 30rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.titleBox {
+    display: flex;
+    justify-content: center;
+    background-color: #e8f5e9;
+    padding: 0.3rem;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #444444;
+}
+
+.ratingBox{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.rating {
+    display: flex;
+    font-size: 1.25rem;
+    color: #f5b301;
+}
+
+.contentBox {
+    padding: 1rem 2rem 2rem 2rem;
+    border: 3px #cfcfcf solid;
+    border-radius: 20px;
+}
+
+.content {
+    font-size: 1rem;
+    color: #444;
+    margin: 4rem 1rem 3rem 1rem;
+    white-space: pre-line;
+}
+
+.date {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.875rem;
+    color: #888;
+    margin: 0rem 1rem 0rem 1rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 1rem 1rem 0rem;
+}
+
+.editButton,
+.deleteButton {
+    margin: 0rem 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.editButton {
+    background-color: #4caf50;
+    color: white;
+}
+
+.editButton:hover {
+    background-color: #2e7d32;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+}
+
+.deleteButton {
+    background-color: #e53935;
+    color: white;
+}
+
+.deleteButton:hover {
+    background-color: #c52121;
+    box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
+}
+
+.buttonWrapper {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.backButton {
+    background-color: #e0e0e0;
+    border: none;
+    margin: 3rem 0rem 2rem 0rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+}
+
+.backButton:hover {
+    background-color: #d5d5d5;
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    color: #666;
+}

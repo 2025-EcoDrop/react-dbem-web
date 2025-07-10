@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { FC, JSX } from 'react';
 import styles from '../styles/layouts/NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../api/auth';
+import { logout } from '../api/authApi';
+import { IconType } from 'react-icons';
+import { FaPencilAlt } from 'react-icons/fa';
 
 interface NavBarProps {
     isLoggedIn: boolean;
@@ -10,6 +12,11 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
     const navigate = useNavigate();
+
+    const Icon = (Icon:IconType): JSX.Element => {
+        let NewIcon = Icon as FC;
+        return <NewIcon />;
+    };
 
     const handleLogo = () => {
         if (isLoggedIn) {
@@ -34,10 +41,19 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
         }
     };
 
+    const handleMyReviews = () => {
+        navigate('/review');
+    };
+
     return (
         <nav className={styles.navbar}>
-            <button className={styles.navbarLogoButton}>DBEM</button>
-            <div>
+            <button onClick={handleLogo} className={styles.navbarLogoButton}>DBEM</button>
+            <div className={styles.navRight}>
+                {isLoggedIn && (
+                    <button onClick={handleMyReviews} className={styles.navbarReviewButton}>
+                        {Icon(FaPencilAlt)}
+                    </button>
+                )}
                 {isLoggedIn ? (
                 <button onClick={handleLogout} className={styles.navbarLogButton}>
                     로그아웃

@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children, isLoggedIn, onLogout }) => {
     return (
         <div>
             <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <main style={{ padding: '2rem' }}>{children}</main>
+            <main style={{ padding: '2rem 0rem 4rem 0rem' }}>{children}</main>
             {/* 나중에 footer 만들면 추가하기 */}
         </div>
     );
