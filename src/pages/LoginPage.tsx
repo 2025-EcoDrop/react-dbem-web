@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../styles/pages/LoginPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { login } from '../api/auth';
+import { login } from '../api/authApi';
 
 interface LoginPageProps {
     onLogin: () => void;

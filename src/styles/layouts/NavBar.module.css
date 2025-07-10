@@ -17,6 +17,12 @@
     font-size: 1.6rem;
 }
 
+.navRight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .navbarLogButton {
     margin-left: 1rem;
     padding: 0.4rem 0.8rem;
@@ -31,4 +37,14 @@
 
 .navbarLogButton:hover {
     background-color: #e8f5e9;
+}
+
+.navbarReviewButton {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    font-size: 1.7rem;
+    cursor: pointer;
 }

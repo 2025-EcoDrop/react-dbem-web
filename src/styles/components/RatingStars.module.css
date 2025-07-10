@@ -1,0 +1,9 @@
+.starContainer {
+    display: flex;
+    gap: 4px;
+    font-size: 1.5rem;
+}
+
+.star {
+    cursor: pointer;
+}
