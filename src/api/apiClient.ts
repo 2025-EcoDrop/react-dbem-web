@@ -5,6 +5,12 @@ const apiClient = axios.create({
     withCredentials: true,
 });
 
+// refresh-token 전용 인스턴스 (인터셉터 없음)
+const plainClient = axios.create({
+    baseURL: process.env.REACT_APP_API_BASE_URL,
+    withCredentials: true,
+});
+
 let isRefreshing = false;
 let failedQueue: { resolve: (value?: unknown) => void; reject: (error: any) => void }[] = [];
 
@@ -25,7 +31,7 @@ apiClient.interceptors.response.use(
     async error => {
         const originalRequest = error.config;
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
+        if (error.response?.status === 401 || error.response?.status === 403 && !originalRequest._retry) {
             if (isRefreshing) {
                 return new Promise((resolve, reject) => {
                     failedQueue.push({ resolve, reject });
@@ -38,12 +44,12 @@ apiClient.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                await apiClient.post('/user/refresh-token');
+                await plainClient.post('/user/refresh-token');
                 processQueue(null);
                 return apiClient(originalRequest);
             } catch (err) {
                 processQueue(err, null);
-                await apiClient.post('/user/logout')
+                await apiClient.post('/user/logout');
                 return Promise.reject(err);
             } finally {
                 isRefreshing = false;
