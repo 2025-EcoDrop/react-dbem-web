@@ -81,7 +81,7 @@
 
 .medicineName {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #333;
 }
 
@@ -104,7 +104,7 @@
 
 .pageButton {
   padding: 0.5rem 0.75rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
   background-color: #fff;
   border-radius: 6px;

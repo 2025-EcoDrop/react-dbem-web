@@ -7,8 +7,8 @@ import HomePage from './pages/Home';
 import ReviewsPage from './pages/ReviewsPage';
 import ReviewFormPage from './pages/ReviewFormPage';
 import ReviewDetailPage from './pages/ReviewDetailPage';
-import apiClient from './api/apiClient';
 import ReviewEditFormPage from './pages/ReviewEditFormPage';
+import { checkAuth } from './api/authApi';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,7 +16,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const checkLogin = async () => {
       try {
-        const res = await apiClient.get("/user/check");
+        const res = await checkAuth();
         if (res.status === 200) {
           setIsLoggedIn(true);
         } else {
