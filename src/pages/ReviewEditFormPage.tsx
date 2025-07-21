@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { createReview, editReviewById, getReviewById } from '../api/reviewApi';
+import { editReviewById, getReviewById } from '../api/reviewApi';
 import { RatingStars } from '../components/RatingStars';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from '../styles/pages/ReviewFormPage.module.css';
+import { findProductName } from '../api/publicDataApi';
 
 const ReviewEditFormPage: React.FC = () => {
     const { id } = useParams<{ id:string }>();
     const [productName, setProductName] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);
+    const [publicData, setPublicData] = useState(false);
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,6 +24,7 @@ const ReviewEditFormPage: React.FC = () => {
             setProductName(res.productName);
             setReview(res.review);
             setRating(res.rating);
+            setPublicData(res.publicData);
         };
 
         fetchReview();
@@ -25,9 +33,29 @@ const ReviewEditFormPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await editReviewById(id!, { productName, review, rating });
+        await editReviewById(id!, { productName, review, rating, publicData });
         alert('리뷰가 수정되었습니다.');
         navigate(`/review/${id}`);
+    };
+
+    const handleProductNameChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setProductName(value);
+        setSearchTerm(value);
+
+        if (value.length > 1) {
+            try {
+                const response = await findProductName(productName);
+                setSuggestions(response);
+                setShowSuggestions(true);
+                setPublicData(false);
+            } catch (error: any) {
+                console.error(error.response);
+            }
+        } else {
+            setSuggestions([]);
+            setShowSuggestions(false);
+        }
     };
 
     return (
@@ -35,14 +63,37 @@ const ReviewEditFormPage: React.FC = () => {
             <form onSubmit={handleSubmit} className={styles.formCard}>
                 <h1 className={styles.title}>약 리뷰 수정</h1>
 
-                <input
-                    type="text"
-                    placeholder="약 이름"
-                    value={productName}
-                    onChange={e => setProductName(e.target.value)}
-                    required
-                    className={styles.input}
-                />
+                <div>
+                    <input
+                        type="text"
+                        placeholder="약 이름"
+                        value={productName}
+                        onChange={handleProductNameChange}
+                        required
+                        className={styles.input}
+                        onFocus={() => setShowSuggestions(true)}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)} // 클릭 시 사라지지 않게 약간의 딜레이
+                    />
+                    
+                    {showSuggestions && suggestions.length > 0 && (
+                        <ul className={styles.suggestionList}>
+                            {suggestions.map((item, index) => (
+                                <li
+                                    key={index}
+                                    onClick={() => {
+                                        setProductName(item);
+                                        setSuggestions([]);
+                                        setShowSuggestions(false);
+                                        setPublicData(true);
+                                    }}
+                                    className={styles.suggestionItem}
+                                >
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
                 <textarea
                     placeholder="리뷰를 작성해주세요"
@@ -58,7 +109,7 @@ const ReviewEditFormPage: React.FC = () => {
                 </div>
 
                 <button type="submit" className={styles.submitButton}>
-                    리뷰 등록
+                    리뷰 수정
                 </button>
             </form>
         </div>

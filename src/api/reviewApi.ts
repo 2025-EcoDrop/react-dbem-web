@@ -4,6 +4,7 @@ export interface ReviewRequest {
     productName: string;
     review: string;
     rating: number;
+    publicData: boolean;
 }
 
 export const createReview = async (request: ReviewRequest) => {
@@ -35,6 +36,7 @@ export const getReviewById = async (id: string) => {
 };
 
 export const editReviewById = async (id: string, request: ReviewRequest) => {
+    console.log(request.publicData);
     const res = await apiClient.put(`/review/${id}`, request);
     return res.data;
 };

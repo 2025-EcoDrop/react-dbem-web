@@ -33,7 +33,7 @@
 }
 
 .textarea {
-    min-height: 20rem;
+    min-height: 25rem;
     resize: vertical;
 }
 
@@ -47,7 +47,7 @@
     background-color: #2e7d32;
     color: white;
     border: none;
-    padding: 0.75rem 0rem 0.75rem 0rem;
+    padding: 1rem 0rem;
     font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
@@ -57,4 +57,44 @@
 
 .submitButton:hover {
     background-color: #27662b;
+}
+
+.suggestionList {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    max-width: 690px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+    width: 89%;
+    margin-top: 4px;
+    padding: 0;
+    list-style: none;
+}
+
+.suggestionList::-webkit-scrollbar {
+    width: 12px; /* 스크롤바 너비 */
+}
+
+.suggestionList::-webkit-scrollbar-track {
+    background: none; /* 트랙 배경 */
+    border-radius: 8px;
+}
+
+.suggestionList::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 30px;
+    border: 2px solid transparent; /* 안쪽 공간 확보용 */
+    background-clip: content-box;
+}
+
+.suggestionItem {
+    padding: 15px 30px;
+    cursor: pointer;
+}
+
+.suggestionItem:hover {
+    background-color: #f0f0f0;
 }

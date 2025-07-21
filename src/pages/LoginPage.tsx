@@ -20,7 +20,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             alert('로그인 성공');
             navigate('/');
         } catch (error: any) {
-            alert(error.message);
+            // console.log(error.response.data.message);
+            alert("아이디 또는 비밀번호가 잘 못 되었습니다.");
         }
     };
 
