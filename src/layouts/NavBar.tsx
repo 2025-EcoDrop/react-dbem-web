@@ -14,7 +14,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
     const navigate = useNavigate();
 
     const Icon = (Icon:IconType): JSX.Element => {
-        let NewIcon = Icon as FC;
+        const NewIcon = Icon as FC;
         return <NewIcon />;
     };
 

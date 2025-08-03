@@ -12,7 +12,6 @@ const ReviewEditFormPage: React.FC = () => {
     const [rating, setRating] = useState(0);
     const [publicData, setPublicData] = useState(false);
 
-    const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -20,6 +19,7 @@ const ReviewEditFormPage: React.FC = () => {
 
     useEffect(() => {
         const fetchReview = async () => {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             const res = await getReviewById(id!);
             setProductName(res.productName);
             setReview(res.review);
@@ -33,6 +33,7 @@ const ReviewEditFormPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await editReviewById(id!, { productName, review, rating, publicData });
         alert('리뷰가 수정되었습니다.');
         navigate(`/review/${id}`);
@@ -41,7 +42,6 @@ const ReviewEditFormPage: React.FC = () => {
     const handleProductNameChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setProductName(value);
-        setSearchTerm(value);
 
         if (value.length > 1) {
             try {
