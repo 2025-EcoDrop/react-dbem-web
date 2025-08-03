@@ -19,7 +19,8 @@ const ReviewEditFormPage: React.FC = () => {
 
     useEffect(() => {
         const fetchReview = async () => {
-            const res = await getReviewById(id);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const res = await getReviewById(id!);
             setProductName(res.productName);
             setReview(res.review);
             setRating(res.rating);
@@ -32,7 +33,8 @@ const ReviewEditFormPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await editReviewById(id, { productName, review, rating, publicData });
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        await editReviewById(id!, { productName, review, rating, publicData });
         alert('리뷰가 수정되었습니다.');
         navigate(`/review/${id}`);
     };
