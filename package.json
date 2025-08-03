@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "eslintConfig": {
     "extends": [
@@ -46,11 +46,11 @@
     ]
   },
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
     "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.3.0",
-    "typescript-eslint": "^8.38.0"
+    "globals": "^16.3.0"
   }
 }
