@@ -1,7 +1,7 @@
 import React, { FC, JSX } from 'react';
 import styles from '../styles/layouts/NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../api/authApi';
+import { logout } from '../apis/authApi';
 import { IconType } from 'react-icons';
 import { FaPencilAlt } from 'react-icons/fa';
 
@@ -45,23 +45,36 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
         navigate('/review');
     };
 
+    const handleBookings = () => {
+        navigate('/booking/form');
+    }
+
     return (
         <nav className={styles.navbar}>
             <button onClick={handleLogo} className={styles.navbarLogoButton}>DBEM</button>
             <div className={styles.navRight}>
                 {isLoggedIn && (
-                    <button onClick={handleMyReviews} className={styles.navbarReviewButton}>
-                        {Icon(FaPencilAlt)}
-                    </button>
+                    <label> 약 수거 예약
+                        <button onClick={handleBookings} className={styles.navbarReviewButton}>
+                            {Icon(FaPencilAlt)}
+                        </button>
+                    </label>
+                )}
+                {isLoggedIn && (
+                    <label> 약 리뷰 작성
+                        <button onClick={handleMyReviews} className={styles.navbarReviewButton}>
+                            {Icon(FaPencilAlt)}
+                        </button>
+                    </label>
                 )}
                 {isLoggedIn ? (
-                <button onClick={handleLogout} className={styles.navbarLogButton}>
-                    로그아웃
-                </button>
+                    <button onClick={handleLogout} className={styles.navbarLogButton}>
+                        로그아웃
+                    </button>
                 ) : (
-                <button onClick={handleLogin} className={styles.navbarLogButton}>
-                    로그인
-                </button>
+                    <button onClick={handleLogin} className={styles.navbarLogButton}>
+                        로그인
+                    </button>
                 )}
             </div>
         </nav>

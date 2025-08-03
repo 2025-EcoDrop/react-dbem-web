@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { editReviewById, getReviewById } from '../api/reviewApi';
+import { editReviewById, getReviewById } from '../apis/reviewApi';
 import { RatingStars } from '../components/RatingStars';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from '../styles/pages/ReviewFormPage.module.css';
-import { findProductName } from '../api/publicDataApi';
+import { findProductName } from '../apis/publicDataApi';
 
 const ReviewEditFormPage: React.FC = () => {
     const { id } = useParams<{ id:string }>();
