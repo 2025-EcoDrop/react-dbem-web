@@ -12,7 +12,6 @@ const ReviewEditFormPage: React.FC = () => {
     const [rating, setRating] = useState(0);
     const [publicData, setPublicData] = useState(false);
 
-    const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -41,7 +40,6 @@ const ReviewEditFormPage: React.FC = () => {
     const handleProductNameChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setProductName(value);
-        setSearchTerm(value);
 
         if (value.length > 1) {
             try {

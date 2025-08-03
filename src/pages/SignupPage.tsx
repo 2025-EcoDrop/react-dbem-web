@@ -28,7 +28,7 @@ const SignupPage: React.FC = () => {
     const sendEmailVerification = async () => {
         try {
             // 나중에 개발 예정
-            const response = await checkEmail(email);
+            // const response = await checkEmail(email);
             alert('인증 메일이 전송되었습니다.');
         } catch (error) {
             console.error(error);

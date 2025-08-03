@@ -22,12 +22,12 @@ const ReviewsPage: React.FC = () => {
         page * itemsPerPage
     );
 
-    const fetchData = async () => {
-        const data = await getReviews(search, page-1);
-        setReviews(data);
-    };
-
     useEffect(() => {
+        const fetchData = async () => {
+            const data = await getReviews(search, page-1);
+            setReviews(data);
+        };
+        
         fetchData();
     }, [search]);
 
