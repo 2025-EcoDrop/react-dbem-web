@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../styles/pages/SignupPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { checkEmail, checkUsername, signup } from '../api/authApi';
+import { checkEmail, checkUsername, signup } from '../apis/authApi';
 
 const SignupPage: React.FC = () => {
     const [username, setUsername] = useState('');

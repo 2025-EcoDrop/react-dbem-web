@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getReviews } from '../api/reviewApi';
+import { getReviews } from '../apis/reviewApi';
 import { Review } from '../types/Review';
 import styles from '../styles/pages/ReviewsPage.module.css';
 import { useNavigate } from 'react-router-dom';

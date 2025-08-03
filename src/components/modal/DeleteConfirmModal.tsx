@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/components/DeleteConfirmModal.module.css";
+import styles from "../../styles/components/DeleteConfirmModal.module.css";
 
 interface Props {
   message?: string;

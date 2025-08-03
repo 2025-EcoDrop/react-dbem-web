@@ -1,3 +1,10 @@
+label {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
 .navbar {
     height: 2.5rem;
     background-color: #4CAF50;
