@@ -13,7 +13,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+
         try {
             await login({ username, password });
             onLogin();
@@ -26,29 +28,31 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     };
 
     return (
-        <div className={styles.container}>
-            <h1>로그인</h1>
-            <input
-                type="text"
-                placeholder="아이디"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className={styles.input}
-            />
-            <input
-                type="password"
-                placeholder="비밀번호"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={styles.input}
-            />
-            <button onClick={handleLogin} className={styles.button}>
-                로그인
-            </button>
-            
-            <p className={styles.signupPrompt}>
-                아직 회원이 아니신가요? <Link to="/signup" className={styles.signupLink}>회원가입</Link>
-            </p>
+        <div>
+            <form onSubmit={handleLogin} className={styles.container}>
+                <h1>로그인</h1>
+                <input
+                    type="text"
+                    placeholder="아이디"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className={styles.input}
+                />
+                <input
+                    type="password"
+                    placeholder="비밀번호"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={styles.input}
+                />
+                <button type='submit' className={styles.button}>
+                    로그인
+                </button>
+                
+                <p className={styles.signupPrompt}>
+                    아직 회원이 아니신가요? <Link to="/signup" className={styles.signupLink}>회원가입</Link>
+                </p>
+            </form>
         </div>
     );
 };

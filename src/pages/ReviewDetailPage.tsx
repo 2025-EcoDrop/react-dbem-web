@@ -29,8 +29,7 @@ const ReviewDetailPage: React.FC = () => {
     const handleDeleteConfirm = async() => {
         try {
             await deleteReviewById(review.id);
-            alert("삭제되었습니다.");
-            navigate("/review");
+            navigate(-1);
         } catch (err) {
             console.error(err);
             alert("삭제에 실패했습니다.");
@@ -65,12 +64,13 @@ const ReviewDetailPage: React.FC = () => {
                 </div>
                 <div className={styles.buttonWrapper}>
                     <button className={styles.backButton} onClick={() => navigate(-1)}>
-                    ← 돌아가기
+                        ← 돌아가기
                     </button>
                 </div>
             </div>
             {showDeleteModal && (
                 <DeleteConfirmModal 
+                    message='정말 리뷰를 삭제하시겠습니까?'
                     onConfirm={handleDeleteConfirm}
                     onCancel={() => setShowDeleteModal(false)}
                 />

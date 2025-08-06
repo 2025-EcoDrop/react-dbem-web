@@ -46,12 +46,33 @@ label {
     background-color: #e8f5e9;
 }
 
+.navbarBookingCheckButton {
+    margin: 0.2rem 0 0 0;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.navbarBookingButton {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    font-size: 1.9rem;
+    cursor: pointer;
+}
+
 .navbarReviewButton {
     display: flex;
     align-items: center;
     background-color: transparent;
     color: whitesmoke;
     border: none;
-    font-size: 1.7rem;
+    font-size: 2rem;
     cursor: pointer;
 }

@@ -9,6 +9,8 @@ import ReviewDetailPage from './pages/ReviewDetailPage';
 import ReviewEditFormPage from './pages/ReviewEditFormPage';
 import { checkAuth } from './apis/authApi';
 import BookingFormPage from './pages/BookingFormPage';
+import BookingsPage from './pages/BookingsPage';
+import BookingEditFormPage from './pages/BookingEditFormPage';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,7 +50,9 @@ const App: React.FC = () => {
           <Route path="/review/:id" element={<ReviewDetailPage />} />
           <Route path='/review/form' element={<ReviewFormPage />} />
           <Route path='/review/form/:id' element={<ReviewEditFormPage />} />
-          <Route path='/booking/form/' element={<BookingFormPage />} />
+          <Route path='/booking' element={<BookingsPage />} />
+          <Route path='/booking/form' element={<BookingFormPage />} />
+          <Route path='/booking/form/:id' element={<BookingEditFormPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

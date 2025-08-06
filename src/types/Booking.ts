@@ -1,4 +1,7 @@
+type BookingStatus = 'REQUESTED' | 'IN_PROGRESS' | 'COMPLETED';
+
 export interface Booking {
+    id: number;
     content: string;
     address: string;
     region_1depth: string;
@@ -6,4 +9,9 @@ export interface Booking {
     region_3depth: string;
     latitude: number;
     longitude: number;
+    bookerName: string;
+    status: BookingStatus;
+    collectorName: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
