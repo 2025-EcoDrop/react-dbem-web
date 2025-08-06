@@ -1,5 +1,5 @@
 .pageWrapper {
-    padding: 2rem;
+    padding: 0rem 5rem 2rem 5rem;
     display: flex;
     justify-content: center;
 }
@@ -8,15 +8,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 700px;
-    width: 100%;
+    max-width: 900px;
+    width: 97%;
 }
 
 .title {
-    font-size: 1.5rem;
     font-weight: bold;
-    color: #2e7d32;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     text-align: center;
 }
 
@@ -25,13 +23,13 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 3rem;
-    width: 95%;
+    width: 100%;
 }
 
 .searchInput {
     flex: 1;
     padding: 1rem 2rem;
-    border: 3px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 50px;
     font-size: 1.2rem;
 }
@@ -61,14 +59,13 @@
 .reviewCard {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    background: #f9f9f9;
+    align-items: center;
     padding: 1rem 1.25rem;
-    border: 3px #ccc solid;
+    border: 1px #ccc solid;
     border-radius: 10px;
     margin-bottom: 1.2rem;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     transition: transform 0.2s ease;

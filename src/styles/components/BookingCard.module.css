@@ -1,0 +1,65 @@
+.card {
+    margin: 0.2rem 2rem;
+    padding: 2.3rem 2rem 2rem 2rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card h3 {
+    margin: 0 0 1.8rem;
+    color: #2e7d32;
+}
+
+.card p {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem 0;
+    color: #333;
+}
+
+.actions {
+    display: flex;
+    justify-content: right;
+    margin-top: 2rem;
+    gap: 8px;
+}
+
+.editBtn,
+.deleteBtn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.editBtn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.editBtn:hover {
+    background-color: #2e7d32;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+}
+
+.deleteBtn {
+    background-color: #e53935;
+    color: white;
+}
+
+.deleteBtn:hover {
+    background-color: #c52121;
+    box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
+}

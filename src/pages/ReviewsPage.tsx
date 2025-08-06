@@ -9,7 +9,7 @@ const ReviewsPage: React.FC = () => {
     const [reviews, setReviews] = useState<Review[]>([]);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
-    const itemsPerPage = 5;
+    const itemsPerPage = 10;
     const navigate = useNavigate();
 
     const filteredReviews = reviews.filter(review =>
@@ -61,18 +61,18 @@ const ReviewsPage: React.FC = () => {
                 ) : (
                     <>
                         {currentReviews.map(review => (
-                        <div
-                            key={review.id}
-                            className={styles.reviewCard}
-                            onClick={() => navigate(`/review/${review.id}`)}
-                        >
-                            <h3 className={styles.medicineName}>{review.productName}</h3>
-                            <div className={styles.rating}>
+                            <div
+                                key={review.id}
+                                className={styles.reviewCard}
+                                onClick={() => navigate(`/review/${review.id}`)}
+                            >
+                                <h3 className={styles.medicineName}>{review.productName}</h3>
                                 <div className={styles.rating}>
-                                    <RatingStars rating={review.rating} onChange={() => (false)} />
+                                    <div className={styles.rating}>
+                                        <RatingStars rating={review.rating} onChange={() => (false)} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         ))}
 
                         <div className={styles.pagination}>

@@ -7,8 +7,8 @@ interface Props {
     onCancel: () => void;
 }
 
-const DeleteConfirmModal: React.FC<Props> = ({
-    message = "정말 삭제하시겠습니까?",
+const CompleteConfirmModal: React.FC<Props> = ({
+    message = "정말 완료하시겠습니까?",
     onConfirm,
     onCancel,
 }) => {
@@ -18,7 +18,7 @@ const DeleteConfirmModal: React.FC<Props> = ({
                 <p>{message}</p>
                 <div className={styles.buttons}>
                     <button onClick={onConfirm} className={styles.confirm}>
-                        삭제
+                        완료
                     </button>
                     <button onClick={onCancel} className={styles.cancel}>
                         취소
@@ -29,4 +29,4 @@ const DeleteConfirmModal: React.FC<Props> = ({
     );
 };
 
-export default DeleteConfirmModal;
+export default CompleteConfirmModal;

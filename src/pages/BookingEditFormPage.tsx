@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useKakaoLoader } from '../hooks/useKakaoLoader';
 import { getRegionFromCoords } from '../utils/getRegionFromCoords';
-import { createBooking } from '../apis/bookingApi';
+import { getBookingById, updateBookingById } from '../apis/bookingApi';
 import styles from '../styles/pages/BookingFormPage.module.css';
 import { getCoordsFromAddress } from '../utils/getCoordsFromAddress';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface Location {
     latitude: number;
@@ -18,7 +18,8 @@ interface Region {
     region_3depth: string;
 }
 
-const BookingFormPage = () => {
+const BookingEditFormPage = () => {
+    const { id } = useParams<{ id:string }>();
     const mapRef = useRef<HTMLDivElement>(null);
     const [content, setContent] = useState('');
     const [location, setLocation] = useState<Location | null>(null);
@@ -33,7 +34,32 @@ const BookingFormPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!kakaoLoaded) return;
+        const fetchBooking = async () => {
+            if (!id) return;
+
+            try {
+                const booking = await getBookingById(id);
+                setContent(booking.content);
+                setRegion({
+                    address: booking.address,
+                    region_1depth: booking.region_1depth,
+                    region_2depth: booking.region_2depth,
+                    region_3depth: booking.region_3depth,
+                });
+                setLocation({
+                    latitude: booking.latitude,
+                    longitude: booking.longitude,
+                });
+            } catch (e: any) {
+                alert('예약 정보를 불러오는 데 실패했습니다.');
+            }
+        };
+
+        fetchBooking();
+    }, [id]);
+
+    useEffect(() => {
+        if (!kakaoLoaded || id) return;
 
         if (!navigator.geolocation) {
             alert('위치 정보가 지원되지 않는 브라우저입니다.');
@@ -74,7 +100,7 @@ const BookingFormPage = () => {
                 setRegion(regionResult);
             }
         );
-    }, [kakaoLoaded]);
+    }, [kakaoLoaded, id]);
 
     useEffect(() => {
         if (!kakaoLoaded || !location || !mapRef.current) return;
@@ -152,8 +178,8 @@ const BookingFormPage = () => {
 
         try {
             console.log(payload);
-            await createBooking(payload);
-            alert('약 수거 예약이 저장되었습니다.');
+            await updateBookingById(id!, payload);
+            alert('약 수거 예약이 수정되었습니다.');
             navigate('/booking');
         } catch (err: any) {
             console.error('약 수거 예약 저장 실패:', err);
@@ -161,14 +187,14 @@ const BookingFormPage = () => {
             if (err.response.data.content) {
                 alert(err.response.data.content);
             } else {
-                alert('오류 발생: 약 수거 예약 저장에 실패했습니다.');
+                alert('오류 발생: 약 수거 예약 수정에 실패했습니다.');
             }
         }
     };
 
     return (
         <div className={styles.pageWrapper}>
-            <h2 className={styles.title}>약 수거 예약</h2>
+            <h2 className={styles.title}>약 수거 예약 수정</h2>
             
             <div className={styles.mapWrapper}>
                 <div id='map' ref={mapRef} className={styles.mapContainer} />
@@ -243,7 +269,7 @@ const BookingFormPage = () => {
                     </label>
 
                     <button type="submit" className={styles.submitButton}>
-                        약 수거 예악하기
+                        약 수거 예악 수정하기
                     </button>
                 </form>
             </div>
@@ -251,4 +277,4 @@ const BookingFormPage = () => {
     );
 };
 
-export default BookingFormPage;
+export default BookingEditFormPage;

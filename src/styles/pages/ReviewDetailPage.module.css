@@ -50,7 +50,7 @@
 
 .contentBox {
     padding: 1rem 2rem 2rem 2rem;
-    border: 3px #cfcfcf solid;
+    border: 1px solid #ccc;
     border-radius: 20px;
 }
 
@@ -118,7 +118,7 @@
 .backButton {
     background-color: #e0e0e0;
     border: none;
-    margin: 3rem 0rem 2rem 0rem;
+    margin: 0.5rem 0rem 2rem 0rem;
     padding: 0.8rem 1rem;
     border-radius: 8px;
     cursor: pointer;

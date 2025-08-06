@@ -45,7 +45,7 @@ const ReviewFormPage: React.FC = () => {
     return (
         <div className={styles.pageWrapper}>
             <form onSubmit={handleSubmit} className={styles.formCard}>
-                <h1 className={styles.title}>약 리뷰 작성</h1>
+                <h2 className={styles.title}>약 리뷰 작성</h2>
 
                 <div>
                     <input
