@@ -1,7 +1,6 @@
 import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
 import { completeBookingById } from '../../apis/bookingApi';
-import DeleteConfirmModal from '../modal/DeleteConfirmModal';
 import { useState } from 'react';
 import CompleteConfirmModal from '../modal/CompleteConfirmModal';
 

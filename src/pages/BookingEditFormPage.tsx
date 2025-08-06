@@ -178,6 +178,7 @@ const BookingEditFormPage = () => {
 
         try {
             console.log(payload);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             await updateBookingById(id!, payload);
             alert('약 수거 예약이 수정되었습니다.');
             navigate('/booking');
