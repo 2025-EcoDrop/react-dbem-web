@@ -42,19 +42,19 @@
 }
 
 .submitButton {
-    background-color: #2e7d32;
+    background-color: #22c55e;
     color: white;
     border: none;
     padding: 1rem 0rem;
     font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     display: block;
 }
 
 .submitButton:hover {
-    background-color: #27662b;
+    background-color: #16a34a;
 }
 
 .suggestionList {
