@@ -33,7 +33,8 @@ const MainPage = () => {
                 const lng = pos.coords.longitude;
                 initMap(lat, lng);
             },
-            (_err) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            (err) => {
                 alert("위치 접근에 실패했습니다.");
                 initMap(37.554722, 126.970833);
             }
