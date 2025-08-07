@@ -21,11 +21,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
     };
 
     const handleLogo = () => {
-        if (isLoggedIn) {
-            navigate('/');
-        } else {
-            navigate('/login');
-        }
+        navigate('/');
     }
 
     const handleLogin = () => {
@@ -61,18 +57,18 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
             <div className={styles.navRight}>
                 {isLoggedIn && (
                     <label>
-                        <button onClick={handleBookings} className={styles.navbarBookingCheckButton}>
-                            {Icon(BsPatchCheckFill)}
-                        </button>
-                         수거 확인
-                    </label>
-                )}
-                {isLoggedIn && (
-                    <label>
                         <button onClick={handleBookingForm} className={styles.navbarBookingButton}>
                             {Icon(MdMedicalServices)}
                         </button>
                          수거 예약
+                    </label>
+                )}
+                {isLoggedIn && (
+                    <label>
+                        <button onClick={handleBookings} className={styles.navbarBookingCheckButton}>
+                            {Icon(BsPatchCheckFill)}
+                        </button>
+                         수거 확인
                     </label>
                 )}
                 {isLoggedIn && (

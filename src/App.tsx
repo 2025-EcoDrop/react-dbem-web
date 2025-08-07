@@ -11,6 +11,7 @@ import { checkAuth } from './apis/authApi';
 import BookingFormPage from './pages/BookingFormPage';
 import BookingsPage from './pages/BookingsPage';
 import BookingEditFormPage from './pages/BookingEditFormPage';
+import MainPage from './pages/MainPage';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,6 +45,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
         <Routes>
+          <Route path='/' element={<MainPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
           <Route path='/review' element={<ReviewsPage />} />
