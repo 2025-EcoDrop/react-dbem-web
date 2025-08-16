@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/pages/BookingsPage.module.css';
 import BookingCard from '../components/booking/BookingCard';
 import { getMyBookings } from '../apis/bookingApi';
@@ -23,27 +23,74 @@ const tabs: { key: TabStatus; label: string }[] = [
     { key: 'i_completed', label: '완료함' },
 ];
 
+const PAGE_SIZE = 10;
+
 const BookingsPage = () => {
     const [activeTab, setActiveTab] = useState<TabStatus>('requesting');
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+    const [hasMore, setHasMore] = useState<boolean>(true); // 더 가져올 게 있는지
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const loaderRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        setBookings([]);      // 탭 변경 시 기존 데이터 초기화
+        setPage(1);           // 탭 변경 시 첫 페이지로
+        setHasMore(true);     // 탭 변경 시 hasMore 초기화
+    }, [activeTab]);
 
     useEffect(() => {
         const fetchBookings = async () => {
             const statusNumber = statusMap[activeTab];
+
+            setLoading(true);
             try {
-                const res = await getMyBookings(statusNumber);
+                const res = await getMyBookings(statusNumber, page-1, PAGE_SIZE);
                 console.log(res);
-                setBookings(res);
-                setLoading(true);
+
+                if (res.length < PAGE_SIZE) setHasMore(false);
+                setBookings(prev => {
+                    const merged = [...prev, ...res];
+                    // 중복 제거
+                    const unique = Array.from(new Map(merged.map(item => [item.id, item])).values());
+                    return unique;
+                });
             } catch (e: any) {
-                setBookings([]);
+                setHasMore(false);
+            } finally {
                 setLoading(false);
             }
         };
 
         fetchBookings();
-    }, [activeTab]);
+    }, [activeTab, page]);
+
+    // 무한 스크롤 observer
+    useEffect(() => {
+        if (!hasMore || loading) return;
+
+        const observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                setPage(prev => prev + 1);
+            }
+        }, {
+            root: null,
+            rootMargin: '100px',
+            threshold: 0,
+        });
+
+        const loader = loaderRef.current;
+        if (loader) {
+            observer.observe(loader);
+        }
+
+        return () => {
+            if (loader) {
+                observer.unobserve(loader);
+            }
+        };
+    }, [hasMore, loading]);
 
     const handleDeleteBooking = (id: number) => {
         setBookings(prev => prev.filter(booking => booking.id !== id));
@@ -69,16 +116,30 @@ const BookingsPage = () => {
             </div>
 
             <div className={styles.cardContainer}>
-                {!loading ? (
+                {bookings.length === 0 && loading ? (
                     <p className={styles.empty}>불러오는 중...</p>
                 ) : bookings.length > 0 ? (
-                    activeTab === 'requesting' || activeTab === 'accepted' || activeTab ==='completed' ? (
-                        bookings.map((booking) => 
-                            <BookingCard key={booking.id} booking={booking} onDelete={handleDeleteBooking} />)
-                    ) : (
-                        bookings.map((booking) => 
-                            <BookingCard2 key={booking.id} booking={booking} onDelete={handleDeleteBooking} onActiveTab={handleTabStatus} />)
-                    )
+                    <>
+                        {bookings.map((booking) =>
+                            activeTab === 'requesting' || activeTab === 'accepted' || activeTab === 'completed' ? (
+                                <BookingCard key={booking.id} booking={booking} onDelete={handleDeleteBooking} />
+                            ) : (
+                                <BookingCard2 key={booking.id} booking={booking} onDelete={handleDeleteBooking} onActiveTab={handleTabStatus} />
+                            )
+                        )}
+
+                        {/* 감지용 div */}
+                        <div
+                            ref={loaderRef}
+                            style={{
+                                height: '20px',
+                                margin: '20px auto',
+                                background: 'transparent',
+                            }}
+                        />
+
+                        {loading && <p className={styles.loadingText}>불러오는 중...</p>}
+                    </>
                 ) : (
                     <p className={styles.empty}>해당 예약이 없습니다.</p>
                 )}
