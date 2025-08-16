@@ -11,15 +11,20 @@ export interface LoginRequest {
     password: string;
 }
 
+export const sendEmail = async (email: string) => {
+    const response = await apiClient.post('/send/send-verification', { email });
+    return response.data;
+}
+
+export const checkVerification = async (email: string) => {
+    const response = await apiClient.post('/send/get-verification', { email });
+    return response.data;
+}
+
 export const checkUsername = async (username: string) => {
     const response = await apiClient.post(`/user/check-username`, { username });
     return response.data;
 };
-
-export const checkEmail = async (email: string) => {
-    const response = await apiClient.post('/user/send-verification', { email });
-    return response.data;
-}
 
 export const signup = async (data: SignupRequest) => {
     const response = await apiClient.post('/user/signup', data);
