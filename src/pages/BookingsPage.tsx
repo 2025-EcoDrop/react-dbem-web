@@ -31,7 +31,6 @@ const BookingsPage = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [hasMore, setHasMore] = useState<boolean>(true); // 더 가져올 게 있는지
-    const observerRef = useRef<IntersectionObserver | null>(null);
     const loaderRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
