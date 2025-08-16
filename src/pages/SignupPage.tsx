@@ -32,6 +32,7 @@ const SignupPage: React.FC = () => {
         }, 10000);
 
         return () => clearInterval(checkEmailVerification);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isEmailSent]);
 
     const checkUsernameAvailability = async () => {
