@@ -31,7 +31,7 @@
     padding: 1rem 2rem;
     border: 1px solid #ccc;
     border-radius: 50px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .addButton {
@@ -78,7 +78,7 @@
 
 .medicineName {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #333;
 }
 

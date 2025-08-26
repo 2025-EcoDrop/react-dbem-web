@@ -154,7 +154,7 @@ const BookingFormPage = () => {
             console.log(payload);
             await createBooking(payload);
             alert('약 수거 예약이 저장되었습니다.');
-            navigate('/booking');
+            navigate('/booking/my');
         } catch (err: any) {
             console.error('약 수거 예약 저장 실패:', err);
 

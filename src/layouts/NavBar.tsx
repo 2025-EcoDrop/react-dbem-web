@@ -5,7 +5,7 @@ import { logout } from '../apis/authApi';
 import { IconType } from 'react-icons';
 import { FaPills  } from 'react-icons/fa';
 import { BsPatchCheckFill } from 'react-icons/bs';
-import { MdMedicalServices } from 'react-icons/md';
+import { MdMedicalServices, MdMedication } from 'react-icons/md';
 
 interface NavBarProps {
     isLoggedIn: boolean;
@@ -42,13 +42,17 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
     const handleMyReviews = () => {
         navigate('/review');
     };
+    
+    const handleBookings = () => {
+        navigate('/booking')
+    }
 
     const handleBookingForm = () => {
         navigate('/booking/form');
     }
 
-    const handleBookings = () => {
-        navigate('/booking');
+    const handleMyBookings = () => {
+        navigate('/booking/my');
     }
 
     return (
@@ -57,15 +61,24 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
             <div className={styles.navRight}>
                 {isLoggedIn && (
                     <label>
-                        <button onClick={handleBookingForm} className={styles.navbarBookingButton}>
+                        <button onClick={handleBookings} className={styles.navbarBookingButton}>
                             {Icon(MdMedicalServices)}
+                        </button>
+                         수거 조회
+                    </label>  
+                )}
+                    
+                {isLoggedIn && (
+                    <label>
+                        <button onClick={handleBookingForm} className={styles.navbarBookingFormButton}>
+                            {Icon(MdMedication)}
                         </button>
                          수거 예약
                     </label>
                 )}
                 {isLoggedIn && (
                     <label>
-                        <button onClick={handleBookings} className={styles.navbarBookingCheckButton}>
+                        <button onClick={handleMyBookings} className={styles.navbarBookingCheckButton}>
                             {Icon(BsPatchCheckFill)}
                         </button>
                          수거 확인

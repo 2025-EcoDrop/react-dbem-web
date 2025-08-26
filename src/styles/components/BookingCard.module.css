@@ -63,3 +63,15 @@
     background-color: #c52121;
     box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
 }
+
+.moreText {
+  margin-left: 4px;
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.moreText:hover {
+  color: #555;
+}
