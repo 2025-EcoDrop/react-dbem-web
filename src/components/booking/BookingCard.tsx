@@ -1,66 +1,56 @@
-import { deleteBookingById } from '../../apis/bookingApi';
+import { useState } from 'react';
+import { acceptBookingById } from '../../apis/bookingApi';
 import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
-import { useNavigate } from 'react-router-dom';
-import DeleteConfirmModal from '../modal/DeleteConfirmModal';
-import { useState } from 'react';
 
 interface BookingCardProps {
     booking: Booking;
-    onDelete: (id: number) => void;
+    onAccept: (id: number) => void;
 }
 
-const BookingCard = ({ booking, onDelete }: BookingCardProps) => {
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const navigate = useNavigate();
+const BookingCard = ({ booking, onAccept }: BookingCardProps) => {
+    const [showFull, setShowFull] = useState(false);
+    const [showAcceptButton, setShowAcceptButton] = useState(true);
 
-
-    const handleEditClick = () => {
-        navigate(`/booking/form/${booking.id}`);
-    };
-
-    const handleDeleteClick = async () => {
+    const handleAcceptClick = async () => {
         try {
-            await deleteBookingById(booking.id.toString());
-            onDelete(booking.id);
+            await acceptBookingById(booking.id.toString());
+            onAccept(booking.id);
+            setShowAcceptButton(false);
+            alert('예약 수락 요청이 완료 되었습니다.');
         } catch (e: any) {
-            alert('예약 삭제 실패');
-        } finally {
-            setShowDeleteModal(false);
+            alert('예약 수락 실패');
+            setShowAcceptButton(true);
         }
     };
     
     return (
         <div className={styles.card}>
-            <h3>{booking.content.length > 20 ? booking.content.slice(0, 20) + '...' : booking.content}</h3>
-            <p>주소: {booking.address}</p>
-            <p>신청일: {new Date(booking.createdAt).toLocaleDateString()}</p>
-            {booking.collectorName &&
-                <p>수락자: {booking.collectorName}</p>
-            }
+            <h3>주소: {booking.address}</h3>
+            <p>신청자: {booking.bookerName}</p>
+            {/* <p>신청일: {new Date(booking.createdAt).toLocaleDateString()}</p> */}
             <p>상태: {booking.status}</p>
+            <p>
+                {showFull
+                    ? booking.content
+                    : booking.content.length > 50
+                    ? booking.content.slice(0, 50) + "..."
+                    : booking.content}
+                {booking.content.length > 50 && !showFull && (
+                    <span
+                        className={styles.moreText}
+                        onClick={() => setShowFull(true)}
+                    >
+                        더보기
+                    </span>
+                )}
+            </p>
             
-
-            {booking.status !== 'COMPLETED' && 
-                <div className={styles.actions}>
-                    <button className={styles.editBtn} onClick={handleEditClick}>수정</button>
-                    <button className={styles.deleteBtn} onClick={() => setShowDeleteModal(true)}>삭제</button>
-                </div>
-            }
-
-            {booking.status === 'COMPLETED' && 
-                <div className={styles.actions}>
-                    <button className={styles.deleteBtn} onClick={() => setShowDeleteModal(true)}>삭제</button>
-                </div>
-            }
-
-            {showDeleteModal && (
-                <DeleteConfirmModal
-                    message='정말 수거 예약을 삭제하시겠습니까?'
-                    onConfirm={handleDeleteClick}
-                    onCancel={() => setShowDeleteModal(false)}
-                />
-            )}
+            <div className={styles.actions}>
+                {showAcceptButton && 
+                    <button className={styles.editBtn} onClick={handleAcceptClick}>수락</button>
+                }
+            </div>
         </div>
     );
 };

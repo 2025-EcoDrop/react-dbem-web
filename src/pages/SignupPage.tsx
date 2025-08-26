@@ -99,6 +99,8 @@ const SignupPage: React.FC = () => {
                 alert(error.response.data.message);
             } else if (error.response.data.username) {
                 alert(error.response.data.username);
+            } else if (error.response.data) {
+                alert(error.response.data);
             }
         }
     };

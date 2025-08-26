@@ -1,6 +1,35 @@
 import { BookingForm } from "../types/BookingForm";
 import apiClient from "./apiClient";
 
+export const getBookings = async (
+    page: number = 0,
+    size: number = 10,
+    city: string = '',
+    district: string  = '',
+    town: string  = '',
+    sortBy: string = "createdAt",
+    sortDir: string = "desc",
+) => {
+    const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('size', size.toString());
+    params.append('sortBy', sortBy.toString());
+    params.append('sortDir', sortDir.toString());
+
+    if (city !== '') {
+        params.append('city', city.toString());
+    }
+    if (district !== '') {
+        params.append('district', district.toString());
+    }
+    if (town !== '') {
+        params.append('town', town.toString());
+    }
+
+    const res = await apiClient.get(`/booking?${params.toString()}`);
+    return res.data.content;
+}
+
 export const createBooking = async (booking: BookingForm) => {
     const res = await apiClient.post('/booking', booking);
     return res.data;

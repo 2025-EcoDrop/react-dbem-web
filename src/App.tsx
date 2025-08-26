@@ -8,10 +8,12 @@ import ReviewFormPage from './pages/ReviewFormPage';
 import ReviewDetailPage from './pages/ReviewDetailPage';
 import ReviewEditFormPage from './pages/ReviewEditFormPage';
 import { checkAuth } from './apis/authApi';
-import BookingFormPage from './pages/BookingFormPage';
 import BookingsPage from './pages/BookingsPage';
+import MyBookingsPage from './pages/MyBookingsPage';
+import BookingFormPage from './pages/BookingFormPage';
 import BookingEditFormPage from './pages/BookingEditFormPage';
 import MainPage from './pages/MainPage';
+
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,6 +55,7 @@ const App: React.FC = () => {
           <Route path='/review/form' element={<ReviewFormPage />} />
           <Route path='/review/form/:id' element={<ReviewEditFormPage />} />
           <Route path='/booking' element={<BookingsPage />} />
+          <Route path='/booking/my' element={<MyBookingsPage />} />
           <Route path='/booking/form' element={<BookingFormPage />} />
           <Route path='/booking/form/:id' element={<BookingEditFormPage />} />
         </Routes>

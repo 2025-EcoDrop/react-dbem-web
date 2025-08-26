@@ -10,7 +10,7 @@ interface BookingCardProps {
     onActiveTab: () => void;
 }
 
-const BookingCard2 = ({ booking, onDelete, onActiveTab }: BookingCardProps) => {
+const MyBookingCard2 = ({ booking, onDelete, onActiveTab }: BookingCardProps) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleCompleteClick = async () => {
@@ -50,4 +50,4 @@ const BookingCard2 = ({ booking, onDelete, onActiveTab }: BookingCardProps) => {
     );
 };
 
-export default BookingCard2;
+export default MyBookingCard2;
