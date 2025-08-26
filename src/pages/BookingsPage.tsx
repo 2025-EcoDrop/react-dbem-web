@@ -5,7 +5,7 @@ import BookingCard from "../components/booking/BookingCard";
 import { getBookings } from "../apis/bookingApi";
 import { getCities, getDistrict } from "../apis/regionApi";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 2;
 
 const BookingsPage = () => {
     const [city, setCity] = useState<string>("전체");
@@ -41,7 +41,7 @@ const BookingsPage = () => {
         observer.observe(loader);
 
         return () => observer.disconnect();
-    }, [hasMore, loading, city, district, town, loaderRef.current]);
+    }, [hasMore, loading, city, district, town]);
 
     useEffect(() => {
         const fetchBookings = async () => {
@@ -58,6 +58,7 @@ const BookingsPage = () => {
                 } else if (city && district && town) {
                     res = await getBookings(page-1, PAGE_SIZE, city, district, town);
                 }
+                
                 if (res.length < PAGE_SIZE) setHasMore(false);
                 setBookings(prev => {
                     const merged = [...prev, ...res];
@@ -76,13 +77,42 @@ const BookingsPage = () => {
     }, [page]);
 
     useEffect(() => {
+        const fetchBookings = async () => {
+            setLoading(true);
+
+            try {
+                let res: Booking[] = [];
+                if (city === '전체') {
+                    res = await getBookings(0, PAGE_SIZE);
+                } else if (city && district === "") {
+                    res = await getBookings(0, PAGE_SIZE, city);
+                } else if (city && district && town === "") {
+                    res = await getBookings(0, PAGE_SIZE, city, district);
+                } else if (city && district && town) {
+                    res = await getBookings(0, PAGE_SIZE, city, district, town);
+                }
+                
+                if (res.length < PAGE_SIZE) setHasMore(false);
+                setBookings(prev => {
+                    const merged = [...prev, ...res];
+                    const unique = Array.from(new Map(merged.map(item => [item.id, item])).values());
+                    return unique;
+                });
+            } catch (error: any) {
+                setHasMore(false);
+            } finally {
+                setLoading(false);
+            }
+            
+        };
+
         const resetSettings = () => {
             setPage(1);
-            setLoading(false);
             setHasMore(true);
             setBookings([]);
         };
 
+        fetchBookings();
         resetSettings();
     }, [city, district, town]);
 
@@ -105,9 +135,7 @@ const BookingsPage = () => {
     useEffect(() => {
         const fetchDistrict = async () => {
             setDistrict("");
-            setTown("");
             setDistricts([]);
-            setTowns([]);
 
             if (city === "전체") {
                 setCity("전체");
@@ -129,10 +157,11 @@ const BookingsPage = () => {
     useEffect(() => {
         setTown("");
         setTowns([]);
+        
         if (city && district) {
             alert("아직 데이터 작업 중...");
         }
-    }, [district]);
+    }, [city, district]);
 
     const handleAcceptBooking = (id: number) => {
         setBookings(prev =>
