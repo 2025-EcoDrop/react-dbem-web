@@ -5,18 +5,7 @@ import { createBooking } from '../apis/bookingApi';
 import styles from '../styles/pages/BookingFormPage.module.css';
 import { getCoordsFromAddress } from '../utils/getCoordsFromAddress';
 import { useNavigate } from 'react-router-dom';
-
-interface Location {
-    latitude: number;
-    longitude: number;
-}
-
-interface Region {
-    address: string;
-    region_1depth: string;
-    region_2depth: string;
-    region_3depth: string;
-}
+import { Location, Region } from '../types/BookingForm';
 
 const BookingFormPage = () => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -45,7 +34,6 @@ const BookingFormPage = () => {
                 const latitude = pos.coords.latitude;
                 const longitude = pos.coords.longitude;
                 setLocation({ latitude, longitude });
-                console.log('내 위치:', latitude, longitude);
 
                 const regionResult = await getRegionFromCoords(latitude, longitude);
                 setRegion(regionResult);
@@ -151,7 +139,6 @@ const BookingFormPage = () => {
         };
 
         try {
-            console.log(payload);
             await createBooking(payload);
             alert('약 수거 예약이 저장되었습니다.');
             navigate('/booking/my');

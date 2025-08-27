@@ -5,7 +5,7 @@ import BookingCard from "../components/booking/BookingCard";
 import { getBookings } from "../apis/bookingApi";
 import { getCities, getDistrict } from "../apis/regionApi";
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 10;
 
 const BookingsPage = () => {
     const [city, setCity] = useState<string>("전체");

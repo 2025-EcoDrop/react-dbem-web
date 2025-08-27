@@ -7,3 +7,15 @@ export interface BookingForm {
     latitude: number;
     longitude: number;
 }
+
+export interface Location {
+    latitude: number;
+    longitude: number;
+}
+
+export interface Region {
+    address: string;
+    region_1depth: string;
+    region_2depth: string;
+    region_3depth: string;
+}
