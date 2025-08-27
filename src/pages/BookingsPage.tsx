@@ -3,7 +3,7 @@ import styles from "../styles/pages/BookingsPage.module.css";
 import { Booking } from "../types/Booking";
 import BookingCard from "../components/booking/BookingCard";
 import { getBookings } from "../apis/bookingApi";
-import { getCities, getDistrict } from "../apis/regionApi";
+import { getCities, getDistrict, getTown } from "../apis/regionApi";
 
 const PAGE_SIZE = 10;
 
@@ -155,13 +155,24 @@ const BookingsPage = () => {
     }, [city]);
 
     // 2. 구 선택 → 동 목록 불러오기
-    useEffect(() => {
-        setTown("");
-        setTowns([]);
-        
-        if (city && district) {
-            alert("아직 데이터 작업 중...");
+    useEffect(() => {       
+        const fetchTown = async () => {
+            setTown("");
+            setTowns([]);
+            
+            if (city && district) {
+                try {
+                    const res = await getTown(city, district);
+                    const towns = res.map((item: { town: string; }) => item.town);
+                    const sortedTowns = [...towns].sort((a, b) => a.localeCompare(b, "ko"));
+                    setTowns(sortedTowns);
+                } catch (error: any) {
+                    console.log(error);
+                }
+            }
         }
+
+        fetchTown();
     }, [city, district]);
 
     const handleAcceptBooking = (id: number) => {
@@ -230,9 +241,15 @@ const BookingsPage = () => {
             {/* 예약 리스트 */}
             <h3 className={styles.sectionTitle}>예약 목록</h3>
             <div className={styles.cardContainer}>
-                {bookings.map((booking) => (
-                    <BookingCard key={booking.id} booking={booking} onAccept={handleAcceptBooking} />
-                ))}
+                {bookings.length === 0 ? (
+                    <p className={styles.empty}>검색된 예약이 없습니다.</p>
+                ) : (
+                    <>
+                        {bookings.map((booking) => (
+                            <BookingCard key={booking.id} booking={booking} onAccept={handleAcceptBooking} />
+                        ))}
+                    </>
+                )}
                 <div
                     ref={loaderRef}
                     style={{
