@@ -40,8 +40,8 @@ const BookingCard = ({ booking, onAccept }: BookingCardProps) => {
                 const payload = {
                     latitude1: booking.latitude,
                     longitude1: booking.longitude,
-                    latitude2: location!.latitude,
-                    longitude2: location!.longitude,
+                    latitude2: location.latitude,
+                    longitude2: location.longitude,
                 };
                 await acceptBookingById(booking.id.toString(), payload);
                 onAccept(booking.id);

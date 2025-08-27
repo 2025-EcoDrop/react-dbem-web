@@ -42,8 +42,8 @@ const MyBookingCard2 = ({ booking, onDelete, onActiveTab }: BookingCardProps) =>
                 const payload = {
                     latitude1: booking.latitude,
                     longitude1: booking.longitude,
-                    latitude2: location!.latitude,
-                    longitude2: location!.longitude,
+                    latitude2: location.latitude,
+                    longitude2: location.longitude,
                 };
                 await completeBookingById(booking.id.toString(), payload);
                 onDelete(booking.id);
