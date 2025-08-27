@@ -46,3 +46,8 @@
     color: white;
     border-color: #22c55e;
 }
+
+.empty {
+    text-align: center;
+    color: #666;
+}
