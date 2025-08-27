@@ -5,18 +5,7 @@ import { getBookingById, updateBookingById } from '../apis/bookingApi';
 import styles from '../styles/pages/BookingFormPage.module.css';
 import { getCoordsFromAddress } from '../utils/getCoordsFromAddress';
 import { useNavigate, useParams } from 'react-router-dom';
-
-interface Location {
-    latitude: number;
-    longitude: number;
-}
-
-interface Region {
-    address: string;
-    region_1depth: string;
-    region_2depth: string;
-    region_3depth: string;
-}
+import { Location, Region } from '../types/BookingForm';
 
 const BookingEditFormPage = () => {
     const { id } = useParams<{ id:string }>();
@@ -71,7 +60,6 @@ const BookingEditFormPage = () => {
                 const latitude = pos.coords.latitude;
                 const longitude = pos.coords.longitude;
                 setLocation({ latitude, longitude });
-                console.log('내 위치:', latitude, longitude);
 
                 const regionResult = await getRegionFromCoords(latitude, longitude);
                 setRegion(regionResult);

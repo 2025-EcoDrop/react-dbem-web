@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { acceptBookingById } from '../../apis/bookingApi';
 import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
+import { Location } from '../../types/BookingForm';
 
 interface BookingCardProps {
     booking: Booking;
@@ -11,16 +12,45 @@ interface BookingCardProps {
 const BookingCard = ({ booking, onAccept }: BookingCardProps) => {
     const [showFull, setShowFull] = useState(false);
     const [showAcceptButton, setShowAcceptButton] = useState(true);
+    const [location, setLocation] = useState<Location | null>(null);
+    
+    useEffect(() => {
+        if (!navigator.geolocation) {
+            alert('위치 정보가 지원되지 않는 브라우저입니다.');
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+                const latitude = pos.coords.latitude;
+                const longitude = pos.coords.longitude;
+                setLocation({ latitude, longitude });
+            },
+            async (err) => {
+                console.error('위치 탐지 실패:', err);
+            }
+        );
+    }, []);
 
     const handleAcceptClick = async () => {
-        try {
-            await acceptBookingById(booking.id.toString());
-            onAccept(booking.id);
-            setShowAcceptButton(false);
-            alert('예약 수락 요청이 완료 되었습니다.');
-        } catch (e: any) {
-            alert('예약 수락 실패');
-            setShowAcceptButton(true);
+        if (location === null) {
+            alert("현재 위치 정보를 알 수 없어 수거 예약 처리를 할 수 없습니다.");
+        } else {
+            try {
+                const payload = {
+                    latitude1: booking.latitude,
+                    longitude1: booking.longitude,
+                    latitude2: location!.latitude,
+                    longitude2: location!.longitude,
+                };
+                await acceptBookingById(booking.id.toString(), payload);
+                onAccept(booking.id);
+                setShowAcceptButton(false);
+                alert('예약 수락 요청이 완료 되었습니다.');
+            } catch (e: any) {
+                alert('예약 위치와 너무 멀어서 수거 예약 처리를 할 수 없습니다.');
+                setShowAcceptButton(true);
+            }
         }
     };
     

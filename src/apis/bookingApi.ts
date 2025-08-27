@@ -1,6 +1,13 @@
 import { BookingForm } from "../types/BookingForm";
 import apiClient from "./apiClient";
 
+export interface Distance {
+    latitude1: number;
+    longitude1: number;
+    latitude2: number;
+    longitude2: number;
+}
+
 export const getBookings = async (
     page: number = 0,
     size: number = 10,
@@ -50,13 +57,13 @@ export const deleteBookingById = async (id: string) => {
     return res.data;
 };
 
-export const acceptBookingById = async (id: string) => {
-    const res = await apiClient.post(`/booking/${id}/accept`);
+export const acceptBookingById = async (id: string, distance: Distance) => {
+    const res = await apiClient.post(`/booking/${id}/accept`, distance);
     return res.data;
 };
 
-export const completeBookingById = async (id: string) => {
-    const res = await apiClient.post(`/booking/${id}/complete`);
+export const completeBookingById = async (id: string, distance: Distance) => {
+    const res = await apiClient.post(`/booking/${id}/complete`, distance);
     return res.data;
 };
 

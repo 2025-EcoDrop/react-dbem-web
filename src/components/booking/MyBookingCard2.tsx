@@ -1,8 +1,9 @@
 import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
 import { completeBookingById } from '../../apis/bookingApi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CompleteConfirmModal from '../modal/CompleteConfirmModal';
+import { Location } from '../../types/BookingForm';
 
 interface BookingCardProps {
     booking: Booking;
@@ -11,17 +12,48 @@ interface BookingCardProps {
 }
 
 const MyBookingCard2 = ({ booking, onDelete, onActiveTab }: BookingCardProps) => {
+    const [location, setLocation] = useState<Location | null>(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+    useEffect(() => {
+        if (!navigator.geolocation) {
+            alert('위치 정보가 지원되지 않는 브라우저입니다.');
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+                const latitude = pos.coords.latitude;
+                const longitude = pos.coords.longitude;
+                setLocation({ latitude, longitude });
+            },
+            async (err) => {
+                console.error('위치 탐지 실패:', err);
+            }
+        );
+    }, []);
+
     const handleCompleteClick = async () => {
-        try {
-            await completeBookingById(booking.id.toString());
-            onDelete(booking.id);
-            onActiveTab();
-        } catch (e: any) {
-            alert('예약 완료 실패');
-        }  finally {
+        if (location === null) {
+            alert("현재 위치 정보를 알 수 없어 수거 완료 처리를 할 수 없습니다.");
             setShowDeleteModal(false);
+        } else {
+            try {
+                const payload = {
+                    latitude1: booking.latitude,
+                    longitude1: booking.longitude,
+                    latitude2: location!.latitude,
+                    longitude2: location!.longitude,
+                };
+                await completeBookingById(booking.id.toString(), payload);
+                onDelete(booking.id);
+                onActiveTab();
+            } catch (e: any) {
+                alert('예약 위치에서 멀어서 수거 완료 처리를 할 수 없습니다.');
+                setShowDeleteModal(false);
+            } finally {
+                setShowDeleteModal(false);
+            }
         }
     };
     
