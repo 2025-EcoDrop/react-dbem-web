@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { useKakaoLoader } from '../hooks/useKakaoLoader';
-import { getRegionFromCoords } from '../utils/getRegionFromCoords';
-import { createBooking } from '../apis/bookingApi';
-import styles from '../styles/pages/BookingFormPage.module.css';
-import { getCoordsFromAddress } from '../utils/getCoordsFromAddress';
+import { useKakaoLoader } from '../../hooks/useKakaoLoader';
+import { getRegionFromCoords } from '../../utils/getRegionFromCoords';
+import { createBooking } from '../../apis/bookingApi';
+import styles from '../../styles/pages/booking/BookingFormPage.module.css';
+import { getCoordsFromAddress } from '../../utils/getCoordsFromAddress';
 import { useNavigate } from 'react-router-dom';
-import { Location, Region } from '../types/BookingForm';
+import { Location, Region } from '../../types/BookingForm';
 
 const BookingFormPage = () => {
     const mapRef = useRef<HTMLDivElement>(null);

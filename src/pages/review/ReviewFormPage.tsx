@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { createReview } from '../apis/reviewApi';
-import { RatingStars } from '../components/RatingStars';
+import { createReview } from '../../apis/reviewApi';
+import { RatingStars } from '../../components/RatingStars';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/pages/ReviewFormPage.module.css';
-import { findProductName } from '../apis/publicDataApi';
+import styles from '../../styles/pages/review/ReviewFormPage.module.css';
+import { findProductName } from '../../apis/publicDataApi';
 
 const ReviewFormPage: React.FC = () => {
     const [productName, setProductName] = useState('');

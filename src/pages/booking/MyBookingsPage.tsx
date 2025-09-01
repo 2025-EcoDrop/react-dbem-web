@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import styles from '../styles/pages/MyBookingsPage.module.css';
-import { getMyBookings } from '../apis/bookingApi';
-import { Booking } from '../types/Booking';
-import MyBookingCard from '../components/booking/MyBookingCard';
-import MyBookingCard2 from '../components/booking/MyBookingCard2';
+import styles from '../../styles/pages/booking/MyBookingsPage.module.css';
+import { getMyBookings } from '../../apis/bookingApi';
+import { Booking } from '../../types/Booking';
+import MyBookingCard from '../../components/booking/MyBookingCard';
+import MyBookingCard2 from '../../components/booking/MyBookingCard2';
 
 type TabStatus = 'requesting' | 'accepted' | 'completed' | 'i_accepted' | 'i_completed';
 
