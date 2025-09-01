@@ -6,7 +6,7 @@ const OAuthSuccess = () => {
 
     useEffect(() => {
         navigate("/");
-    }, []);
+    }, [navigate]);
 
     return (
         <>
