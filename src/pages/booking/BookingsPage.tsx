@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "../styles/pages/BookingsPage.module.css";
-import { Booking } from "../types/Booking";
-import BookingCard from "../components/booking/BookingCard";
-import { getBookings } from "../apis/bookingApi";
-import { getCities, getDistrict, getTown } from "../apis/regionApi";
+import styles from "../../styles/pages/booking/BookingsPage.module.css";
+import { Booking } from "../../types/Booking";
+import BookingCard from "../../components/booking/BookingCard";
+import { getBookings } from "../../apis/bookingApi";
+import { getCities, getDistrict, getTown } from "../../apis/regionApi";
 
 const PAGE_SIZE = 10;
 

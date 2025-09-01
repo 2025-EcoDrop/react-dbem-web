@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './layouts/Layout';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import ReviewsPage from './pages/ReviewsPage';
-import ReviewFormPage from './pages/ReviewFormPage';
-import ReviewDetailPage from './pages/ReviewDetailPage';
-import ReviewEditFormPage from './pages/ReviewEditFormPage';
 import { checkAuth } from './apis/authApi';
-import BookingsPage from './pages/BookingsPage';
-import MyBookingsPage from './pages/MyBookingsPage';
-import BookingFormPage from './pages/BookingFormPage';
-import BookingEditFormPage from './pages/BookingEditFormPage';
+import Layout from './layouts/Layout';
+import LoginPage from './pages/user/LoginPage';
+import SignupPage from './pages/user/SignupPage';
+import ReviewsPage from './pages/review/ReviewsPage';
+import ReviewFormPage from './pages/review/ReviewFormPage';
+import ReviewDetailPage from './pages/review/ReviewDetailPage';
+import ReviewEditFormPage from './pages/review/ReviewEditFormPage';
+import BookingsPage from './pages/booking/BookingsPage';
+import MyBookingsPage from './pages/booking/MyBookingsPage';
+import BookingFormPage from './pages/booking/BookingFormPage';
+import BookingEditFormPage from './pages/booking/BookingEditFormPage';
 import MainPage from './pages/MainPage';
+import OAuthSuccess from './pages/OAuthSuccess';
 
 
 const App: React.FC = () => {
@@ -50,6 +51,7 @@ const App: React.FC = () => {
           <Route path='/' element={<MainPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
+          <Route path="/oauth/success" element={<OAuthSuccess />} />
           <Route path='/review' element={<ReviewsPage />} />
           <Route path="/review/:id" element={<ReviewDetailPage />} />
           <Route path='/review/form' element={<ReviewFormPage />} />

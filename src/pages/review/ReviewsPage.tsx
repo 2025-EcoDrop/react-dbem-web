@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getReviews } from '../apis/reviewApi';
-import { Review } from '../types/Review';
-import styles from '../styles/pages/ReviewsPage.module.css';
+import { getReviews } from '../../apis/reviewApi';
+import { Review } from '../../types/Review';
+import styles from '../../styles/pages/review/ReviewsPage.module.css';
 import { useNavigate } from 'react-router-dom';
-import { RatingStars } from '../components/RatingStars';
+import { RatingStars } from '../../components/RatingStars';
 
 const ReviewsPage: React.FC = () => {
     const [reviews, setReviews] = useState<Review[]>([]);
