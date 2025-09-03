@@ -144,7 +144,8 @@ const BookingsPage = () => {
                 try {
                     const res = await getDistrict(city);
                     const districts = res.map((item: { district: string; }) => item.district);
-                    setDistricts(districts);
+                    const sortedDistricts = [...districts].sort((a, b) => a.localeCompare(b, "ko"));
+                    setDistricts(sortedDistricts);
                 } catch (error: any) {
                     console.log(error);
                 }
@@ -206,7 +207,7 @@ const BookingsPage = () => {
 
             {districts.length > 0 && (
                 <div>
-                    <h3>구 선택</h3>
+                    <h3>구/군 선택</h3>
                     <div className={styles.buttonGroup}>
                         {districts.map((d) => (
                             <button
@@ -223,7 +224,7 @@ const BookingsPage = () => {
 
             {towns.length > 0 && (
                 <div className={styles.section}>
-                    <h3>동 선택</h3>
+                    <h3>읍/면/동 선택</h3>
                     <div className={styles.buttonGroup}>
                         {towns.map((t) => (
                             <button
