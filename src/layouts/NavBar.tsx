@@ -6,7 +6,7 @@ import { IconType } from 'react-icons';
 import { FaPills  } from 'react-icons/fa';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { MdMedicalServices, MdMedication } from 'react-icons/md';
-import { FaCoins, FaMoneyBill, FaMoneyCheckAlt, FaWallet, FaPiggyBank } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
 
 
 interface NavBarProps {
