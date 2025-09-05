@@ -23,3 +23,10 @@ hr {
     max-width: 1000px;
     width: 100%;
 }
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    color: #666;
+}

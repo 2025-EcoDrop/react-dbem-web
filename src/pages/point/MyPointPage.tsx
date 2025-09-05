@@ -27,19 +27,17 @@ const MyPointPage: React.FC = () => {
     }, []);
 
     if (!user) {
-        return <div>정보를 불러오는 중...</div>;
+        return <div className={styles.loading}>정보를 불러오는 중...</div>;
     }
-
-    // className={styles.loading}
 
     return (
         <div className={styles.wrapper}>
             <h2>개인 정보 및 소유 포인트 현황</h2>
             <div className={styles.container}>
                 <div className={styles.card}>
-                    <UserInfoCard user={user!}/>
+                    <UserInfoCard user={user}/>
                     <hr />
-                    <PointBox points={user!.balance} history={history!} />
+                    <PointBox points={user.balance} history={history} />
                 </div>
             </div>
         </div>
