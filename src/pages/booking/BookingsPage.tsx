@@ -7,7 +7,7 @@ import { getCities, getDistrict, getTown } from "../../apis/regionApi";
 
 const PAGE_SIZE = 10;
 
-const BookingsPage = () => {
+const BookingsPage: React.FC = () => {
     const [city, setCity] = useState<string>("전체");
     const [district, setDistrict] = useState<string>("");
     const [town, setTown] = useState<string>("");

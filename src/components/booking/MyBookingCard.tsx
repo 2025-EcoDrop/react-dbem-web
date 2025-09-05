@@ -3,14 +3,14 @@ import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
 import { useNavigate } from 'react-router-dom';
 import DeleteConfirmModal from '../modal/DeleteConfirmModal';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface BookingCardProps {
     booking: Booking;
     onDelete: (id: number) => void;
 }
 
-const MyBookingCard = ({ booking, onDelete }: BookingCardProps) => {
+const MyBookingCard: React.FC<BookingCardProps> = ({ booking, onDelete }) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const navigate = useNavigate();
 

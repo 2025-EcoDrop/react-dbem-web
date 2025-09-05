@@ -1,7 +1,7 @@
 import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
 import { completeBookingById } from '../../apis/bookingApi';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CompleteConfirmModal from '../modal/CompleteConfirmModal';
 import { Location } from '../../types/BookingForm';
 
@@ -11,7 +11,7 @@ interface BookingCardProps {
     onActiveTab: () => void;
 }
 
-const MyBookingCard2 = ({ booking, onDelete, onActiveTab }: BookingCardProps) => {
+const MyBookingCard2: React.FC<BookingCardProps> = ({ booking, onDelete, onActiveTab }) => {
     const [location, setLocation] = useState<Location | null>(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
