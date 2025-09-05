@@ -1,0 +1,26 @@
+.wrapper {
+    padding: 1.5rem 1.5rem 2.5rem 1.5rem;
+}
+.pointBox {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 0.5rem ;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2rem 0 0 0;
+}
+
+.pointBox:hover {
+    background-color: #45a049;
+}
+
+.points {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.guide {
+    color: #999999;
+}

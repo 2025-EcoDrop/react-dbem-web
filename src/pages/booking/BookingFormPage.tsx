@@ -7,7 +7,7 @@ import { getCoordsFromAddress } from '../../utils/getCoordsFromAddress';
 import { useNavigate } from 'react-router-dom';
 import { Location, Region } from '../../types/BookingForm';
 
-const BookingFormPage = () => {
+const BookingFormPage: React.FC = () => {
     const mapRef = useRef<HTMLDivElement>(null);
     const [content, setContent] = useState('');
     const [location, setLocation] = useState<Location | null>(null);

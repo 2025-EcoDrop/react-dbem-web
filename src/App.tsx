@@ -14,6 +14,7 @@ import BookingFormPage from './pages/booking/BookingFormPage';
 import BookingEditFormPage from './pages/booking/BookingEditFormPage';
 import MainPage from './pages/MainPage';
 import OAuthSuccess from './pages/OAuthSuccess';
+import MyPointPage from './pages/point/MyPointPage';
 
 
 const App: React.FC = () => {
@@ -60,6 +61,7 @@ const App: React.FC = () => {
           <Route path='/booking/my' element={<MyBookingsPage />} />
           <Route path='/booking/form' element={<BookingFormPage />} />
           <Route path='/booking/form/:id' element={<BookingEditFormPage />} />
+          <Route path='/point' element={<MyPointPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

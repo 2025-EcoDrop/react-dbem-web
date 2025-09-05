@@ -1,0 +1,32 @@
+hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  opacity: 0.5;
+}
+
+.wrapper {
+    padding: 1rem 5rem;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 1rem;
+}
+
+.card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    color: #666;
+}

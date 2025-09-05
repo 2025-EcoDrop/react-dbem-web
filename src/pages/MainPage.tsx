@@ -8,7 +8,7 @@ const categories = [
     { code: "HP8", name: "보건소" },
 ];
 
-const MainPage = () => {
+const MainPage: React.FC = () => {
     const loaded = useKakaoLoader();
     const mapRef = useRef<HTMLDivElement>(null);
     const [map, setMap] = useState<any>(null);

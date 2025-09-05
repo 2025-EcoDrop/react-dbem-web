@@ -1,0 +1,18 @@
+.card {
+    background: #00000000;
+    border: 1rem 0;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.info {
+    margin-bottom: 1rem;
+}
+
+.name {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

@@ -6,6 +6,8 @@ import { IconType } from 'react-icons';
 import { FaPills  } from 'react-icons/fa';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { MdMedicalServices, MdMedication } from 'react-icons/md';
+import { FaWallet } from "react-icons/fa";
+
 
 interface NavBarProps {
     isLoggedIn: boolean;
@@ -55,6 +57,10 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
         navigate('/booking/my');
     }
 
+    const handleMyPointInfo = () => {
+        navigate('/point')
+    }
+
     return (
         <nav className={styles.navbar}>
             <button onClick={handleLogo} className={styles.navbarLogoButton}>DBEM</button>
@@ -92,6 +98,14 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
                          리뷰 확인
                     </label>
                 )}
+                {isLoggedIn && (
+                    <label>
+                        <button onClick={handleMyPointInfo} className={styles.navbarBookingCheckButton}>
+                            {Icon(FaWallet)}
+                        </button>
+                        포인트 확인
+                    </label>
+                )}   
                 {isLoggedIn ? (
                     <button onClick={handleLogout} className={styles.navbarLogButton}>
                         로그아웃
