@@ -1,4 +1,4 @@
-import React, { FC, JSX, useState } from 'react';
+import { FC, JSX, useState } from 'react';
 import styles from '../../styles/pages/user/LoginPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ interface LoginPageProps {
     onLogin: () => void;
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
+const LoginPage = ({ onLogin }: LoginPageProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();

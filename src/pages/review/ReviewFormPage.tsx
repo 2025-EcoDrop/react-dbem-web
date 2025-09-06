@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/pages/review/ReviewFormPage.module.css';
 import { findProductName } from '../../apis/publicDataApi';
 
-const ReviewFormPage: React.FC = () => {
+const ReviewFormPage = () => {
     const [productName, setProductName] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);

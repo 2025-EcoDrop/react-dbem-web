@@ -7,7 +7,7 @@ interface LayoutProps {
     onLogout: () => void;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, isLoggedIn, onLogout }) => {
+const Layout = ({ children, isLoggedIn, onLogout }: LayoutProps) => {
     return (
         <div>
             <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout} />

@@ -1,17 +1,12 @@
-import React from "react";
 import styles from "../../styles/components/ConfirmModal.module.css";
 
-interface Props {
+interface DeleteConfirmModalProps {
     message?: string;
     onConfirm: () => void;
     onCancel: () => void;
 }
 
-const DeleteConfirmModal: React.FC<Props> = ({
-    message = "정말 삭제하시겠습니까?",
-    onConfirm,
-    onCancel,
-}) => {
+const DeleteConfirmModal = ({ message = "정말 삭제하시겠습니까?", onConfirm, onCancel }: DeleteConfirmModalProps) => {
     return (
         <div className={styles.overlay}>
             <div className={styles.modal}>

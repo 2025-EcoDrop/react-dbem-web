@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../../styles/components/point/UserInfoCard.module.css";
 import { UserInfo } from "../../types/Point";
 
@@ -6,7 +5,7 @@ interface UserInfoCardProps {
     user: UserInfo;
 }
 
-const UserInfoCard: React.FC<UserInfoCardProps> = ({ user }) => {
+const UserInfoCard = ({ user }: UserInfoCardProps) => {
     return (
         <div className={styles.card}>
             <h3>개인 정보</h3>

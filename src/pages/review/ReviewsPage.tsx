@@ -5,7 +5,7 @@ import styles from '../../styles/pages/review/ReviewsPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { RatingStars } from '../../components/RatingStars';
 
-const ReviewsPage: React.FC = () => {
+const ReviewsPage = () => {
     const [reviews, setReviews] = useState<Review[]>([]);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);

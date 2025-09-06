@@ -1,17 +1,12 @@
-import React from "react";
 import styles from "../../styles/components/ConfirmModal.module.css";
 
-interface Props {
+interface CompleteConfirmModalProps {
     message?: string;
     onConfirm: () => void;
     onCancel: () => void;
 }
 
-const CompleteConfirmModal: React.FC<Props> = ({
-    message = "정말 완료하시겠습니까?",
-    onConfirm,
-    onCancel,
-}) => {
+const CompleteConfirmModal = ({ message = "정말 완료하시겠습니까?", onConfirm, onCancel }: CompleteConfirmModalProps) => {
     return (
         <div className={styles.overlay}>
             <div className={styles.modal}>

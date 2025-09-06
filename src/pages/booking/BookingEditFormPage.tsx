@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useKakaoLoader } from '../../hooks/useKakaoLoader';
 import { getRegionFromCoords } from '../../utils/getRegionFromCoords';
 import { getBookingById, updateBookingById } from '../../apis/bookingApi';
@@ -7,7 +7,7 @@ import { getCoordsFromAddress } from '../../utils/getCoordsFromAddress';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Location, Region } from '../../types/BookingForm';
 
-const BookingEditFormPage: React.FC = () => {
+const BookingEditFormPage = () => {
     const { id } = useParams<{ id:string }>();
     const mapRef = useRef<HTMLDivElement>(null);
     const [content, setContent] = useState('');

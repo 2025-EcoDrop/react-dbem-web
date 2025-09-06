@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { acceptBookingById } from '../../apis/bookingApi';
 import styles from '../../styles/components/BookingCard.module.css';
 import { Booking } from '../../types/Booking';
@@ -9,7 +9,7 @@ interface BookingCardProps {
     onAccept: (id: number) => void;
 }
 
-const BookingCard: React.FC<BookingCardProps> = ({ booking, onAccept }) => {
+const BookingCard = ({ booking, onAccept }: BookingCardProps) => {
     const [showFull, setShowFull] = useState(false);
     const [showAcceptButton, setShowAcceptButton] = useState(true);
     const [location, setLocation] = useState<Location | null>(null);

@@ -25,7 +25,7 @@ const tabs: { key: TabStatus; label: string }[] = [
 
 const PAGE_SIZE = 10;
 
-const BookingsPage: React.FC = () => {
+const BookingsPage = () => {
     const [activeTab, setActiveTab] = useState<TabStatus>('requesting');
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [page, setPage] = useState<number>(1);
