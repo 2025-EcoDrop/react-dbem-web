@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/pages/point/MyPointPage.module.css";
 import PointBox from "../../components/point/PointBox";
 import { getMyPointInfo, getMyPointRecords } from "../../apis/pointApi";
 import UserInfoCard from "../../components/point/UserInfoCard";
 import { HistoryItem, UserInfo } from "../../types/Point";
 
-const MyPointPage: React.FC = () => {
+const MyPointPage = () => {
     const [user, setUser] = useState<UserInfo|null>(null);
     const [history, setHistory] = useState<HistoryItem[]>([]);
 

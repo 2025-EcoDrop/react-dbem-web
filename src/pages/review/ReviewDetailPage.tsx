@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { deleteReviewById, getReviewById } from '../../apis/reviewApi';
 import { Review } from '../../types/Review';
@@ -6,7 +6,7 @@ import { RatingStars } from '../../components/RatingStars';
 import styles from '../../styles/pages/review/ReviewDetailPage.module.css';
 import DeleteConfirmModal from '../../components/modal/DeleteConfirmModal';
 
-const ReviewDetailPage: React.FC = () => {
+const ReviewDetailPage = () => {
     const { id } = useParams<{ id: string }>();
     const [review, setReview] = useState<Review | null>(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);

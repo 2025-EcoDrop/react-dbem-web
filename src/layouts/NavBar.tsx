@@ -1,4 +1,4 @@
-import React, { FC, JSX } from 'react';
+import { FC, JSX } from 'react';
 import styles from '../styles/layouts/NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../apis/authApi';
@@ -14,7 +14,7 @@ interface NavBarProps {
     onLogout: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
+const NavBar = ({ isLoggedIn, onLogout }: NavBarProps) => {
     const navigate = useNavigate();
 
     const Icon = (Icon:IconType): JSX.Element => {

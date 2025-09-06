@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useKakaoLoader } from '../../hooks/useKakaoLoader';
 import { getRegionFromCoords } from '../../utils/getRegionFromCoords';
 import { createBooking } from '../../apis/bookingApi';
@@ -7,7 +7,7 @@ import { getCoordsFromAddress } from '../../utils/getCoordsFromAddress';
 import { useNavigate } from 'react-router-dom';
 import { Location, Region } from '../../types/BookingForm';
 
-const BookingFormPage: React.FC = () => {
+const BookingFormPage = () => {
     const mapRef = useRef<HTMLDivElement>(null);
     const [content, setContent] = useState('');
     const [location, setLocation] = useState<Location | null>(null);
@@ -143,10 +143,10 @@ const BookingFormPage: React.FC = () => {
             alert('약 수거 예약이 저장되었습니다.');
             navigate('/booking/my');
         } catch (err: any) {
-            console.error('약 수거 예약 저장 실패:', err);
-
             if (err.response.data.content) {
                 alert(err.response.data.content);
+            } else if (err.response.data.message) {
+                alert(err.response.data.message);
             } else {
                 alert('오류 발생: 약 수거 예약 저장에 실패했습니다.');
             }

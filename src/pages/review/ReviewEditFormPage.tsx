@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styles from '../../styles/pages/review/ReviewFormPage.module.css';
 import { findProductName } from '../../apis/publicDataApi';
 
-const ReviewEditFormPage: React.FC = () => {
+const ReviewEditFormPage = () => {
     const { id } = useParams<{ id:string }>();
     const [productName, setProductName] = useState('');
     const [review, setReview] = useState('');

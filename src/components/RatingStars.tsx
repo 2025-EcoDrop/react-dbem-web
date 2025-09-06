@@ -2,12 +2,12 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import React, { FC, JSX } from 'react';
 import styles from '../styles/components/RatingStars.module.css';
 
-interface Props {
+interface RatingStarsProps {
     rating: number;
     onChange: (value: number) => void;
 }
 
-export const RatingStars: React.FC<Props> = ({ rating, onChange }) => {
+export const RatingStars = ({ rating, onChange }: RatingStarsProps) => {
     const handleClick = (event: React.MouseEvent, index: number) => {
         const { left, width } = (event.target as HTMLElement).getBoundingClientRect();
         const clickX = event.clientX - left;

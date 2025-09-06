@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PointHistory from "./PointHistory";
 import styles from "../../styles/components/point/PointBox.module.css";
 import { HistoryItem } from "../../types/Point";
@@ -8,7 +8,7 @@ interface PointBoxProps {
     history: HistoryItem[];
 }
 
-const PointBox: React.FC<PointBoxProps> = ({ points, history }) => {
+const PointBox = ({ points, history }: PointBoxProps) => {
     const [showHistory, setShowHistory] = useState(false);
 
     return (
