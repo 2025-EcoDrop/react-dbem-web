@@ -2,6 +2,80 @@
 
 ---
 
+# 💊 DBEM - 프론트엔드
+
+React 기반 SPA로 구현된 폐의약품 수거 대행 서비스의 프론트엔드입니다.  
+
+---
+
+## 📌 기술 스택
+
+- React (create-react-app 기반)
+- React Router (페이지 네비게이션)
+- CSS 모듈
+- Kakao Maps JavaScript API (지도 렌더링 및 위치 표시)
+- Kakao Maps Geocoding API (위도, 경도를 주소 변환)
+
+---
+
+## 📋 주요 기능
+
+### 1. 사용자 인증 및 세션 관리
+- JWT Access Token / Refresh Token 기반 인증
+- 로그인, 로그아웃, 회원가입 UI 및 API 연동
+- 인증 상태에 따른 페이지 접근 제어
+
+### 2. 약 리뷰 페이지
+- 리뷰 목록 조회
+- 리뷰 상세 페이지 제공
+- 리뷰 작성, 수정, 삭제 기능
+
+### 3. 수거 예약 페이지
+- 수거 예약 생성, 수정, 삭제 기능
+- 사용자 현재 위치 조회 가능 시, 자동으로 위치 정보 불러오기
+- 위치 정보를 불러올 수 없을 시, 사용자가 직접 주소를 입력하도록 지원
+- 지도와 입력 폼을 연동하여 위치 정보 표시
+
+### 4. 예약 현황 통합 조회 페이지
+- 예약 상태별 정보 확인
+  1. 본인이 작성한 수거 예약 & 신청중 상태
+  2. 본인이 작성한 수거 예약 & 수락됨 상태
+  3. 본인이 작성한 수거 예약 & 완료됨 상태
+  4. 본인이 수락한 수거 예약 & 수락함 상태
+  5. 본인이 수락한 수거 예약 & 완료함 상태
+
+### 5. 포인트 페이지
+- 사용자 기본 정보 조회
+- 포인트 정보 조회
+
+---
+
+## 📁 주요 프로젝트 구조
+```bash
+src/
+│ 
+├── apis/ # 백엔드 API 요청 로직
+│ 
+├── components/ # 재사용 컴포넌트
+│ 
+├── pages/ # 라우팅 페이지
+│ 
+├── styles/ # CSS 모듈
+│ 
+└── App.js # 라우터 및 전역 상태 관리
+```
+
+---
+
+## 🧪 설치 및 실행
+
+```bash
+npm install
+npm start
+```
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
