@@ -13,6 +13,7 @@ interface MyBookingCard2Props {
 
 const MyBookingCard2 = ({ booking, onDelete, onActiveTab }: MyBookingCard2Props) => {
     const [location, setLocation] = useState<Location | null>(null);
+    const [showFull, setShowFull] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
@@ -59,7 +60,21 @@ const MyBookingCard2 = ({ booking, onDelete, onActiveTab }: MyBookingCard2Props)
     
     return (
         <div className={styles.card}>
-            <h3>{booking.content.length > 20 ? booking.content.slice(0, 20) + '...' : booking.content}</h3>
+            <h3>
+                {showFull
+                    ? booking.content
+                    : booking.content.length > 20
+                    ? booking.content.slice(0, 20) + "..."
+                    : booking.content}
+                {booking.content.length > 20 && (
+                    <span
+                        className={styles.moreText}
+                        onClick={() => setShowFull(prev => !prev)}
+                    >
+                        {showFull ? '접기' : '더보기'}
+                    </span>
+                )}
+            </h3>
             <p>주소: {booking.address}</p>
             <p>신청일: {new Date(booking.createdAt).toLocaleDateString()}</p>
             <p>신청자: {booking.bookerName}</p>

@@ -12,6 +12,7 @@ interface MyBookingCardProps {
 
 const MyBookingCard = ({ booking, onDelete }: MyBookingCardProps) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showFull, setShowFull] = useState(false);
     const navigate = useNavigate();
 
 
@@ -32,7 +33,22 @@ const MyBookingCard = ({ booking, onDelete }: MyBookingCardProps) => {
     
     return (
         <div className={styles.card}>
-            <h3>{booking.content.length > 20 ? booking.content.slice(0, 20) + '...' : booking.content}</h3>
+            {/* <h3>{booking.content.length > 20 ? booking.content.slice(0, 20) + '...' : booking.content}</h3> */}
+            <h3>
+                {showFull
+                    ? booking.content
+                    : booking.content.length > 20
+                    ? booking.content.slice(0, 20) + "..."
+                    : booking.content}
+                {booking.content.length > 20 && (
+                    <span
+                        className={styles.moreText}
+                        onClick={() => setShowFull(prev => !prev)}
+                    >
+                        {showFull ? '접기' : '더보기'}
+                    </span>
+                )}
+            </h3>
             <p>주소: {booking.address}</p>
             <p>신청일: {new Date(booking.createdAt).toLocaleDateString()}</p>
             {booking.collectorName &&
